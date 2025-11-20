@@ -1,11 +1,12 @@
 
 
-import './App.css'
+
 
 import Login from './components/auth/login'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Mainlayoput from './Mainlayout'
 import Signup from './components/auth/Signup'
+import ForgotPassword from './components/auth/ForgotPassword'
 4
 
 const appRouter = createBrowserRouter([
@@ -22,7 +23,14 @@ const appRouter = createBrowserRouter([
     element:<Signup/>
 
 
+  },
+  {
+     path:"/forgot-password",
+     element:<ForgotPassword/>
+
   }
+ 
+
 
 ])
 

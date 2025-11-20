@@ -87,11 +87,18 @@ const Login = () => {
 
                 )
             }
+
+            <div className="mt-5">
+              <Link to ="/forgot-password" className="text-blue-500 ml-33" > Forgot Password</Link>
+
+            </div>
+
+            
           
         </div>
 
         <Separator/>
-        <p className="mt-2">
+        <p className="mt-2 ml-24">
             Don't have an account?{" "}
             <Link to="/Signup" className="text-blue-500">Signup</Link>
         </p>
