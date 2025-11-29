@@ -50,7 +50,7 @@ const Navbar = () => {
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14 ">
         <Link to="/">
-          <h1>Foodora </h1>
+          <h1 className="text-2xl font-bold text-gray-600">Foodora </h1>
         </Link>
 
         {/* DESKTOP MENU (hidden on mobile) */}
