@@ -9,6 +9,7 @@ import VerifyEmail from './components/auth/VerifyEmail'
 import HeroSection from './components/Herosection'
 import { createBrowserRouter,  RouterProvider  } from 'react-router-dom'
 import Profile from './components/Profile'
+import SearchPage from './components/SearchPage'
 
 
 const appRouter = createBrowserRouter([
@@ -23,6 +24,11 @@ const appRouter = createBrowserRouter([
       {
         path:"/profile",
         element:<Profile/>
+      },
+      {
+        path:"/search/:params",
+        element:<SearchPage/>
+
       }
     ]
   },

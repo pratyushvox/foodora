@@ -3,8 +3,10 @@ import { Input } from "./ui/input"
 import { useState } from "react"
 import { Button } from "./ui/button"
 import Heroimage from "../assets/Herosection.png"
+import { useNavigate } from "react-router-dom"
 
 const HeroSection = ()=>{
+    const navigate = useNavigate();
     const [searchText,setSearchText]= useState<string>("")
   return(
     <div className="flex flex-col md:flex-row max-w-7xl mx-auto md:p-10 rounded-lg justify-center m-4 gap-20">
@@ -19,11 +21,12 @@ const HeroSection = ()=>{
                     <Input
                 type = "text"
                 value = {searchText}
+                placeholder="Search  restaurant by name , city and country"
                 onChange={(e)=>setSearchText(e.target.value)}
                 className="pl-10  h-10 shadow-lg"
                 />
                 <Search className="text-gray-500 absolute inset-y-2 left-3"/>
-                <Button className="bg-button hover:bg-button-hover">Search</Button>
+                <Button onClick={()=> navigate(`/search/${searchText}`)}  className="bg-button hover:bg-button-hover">Search</Button>
                 
 
             </div>
