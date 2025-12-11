@@ -10,6 +10,7 @@ import HeroSection from './components/Herosection'
 import { createBrowserRouter,  RouterProvider  } from 'react-router-dom'
 import Profile from './components/Profile'
 import SearchPage from './components/SearchPage'
+import RestaurantDetails from './components/RestaurantDetails'
 
 
 const appRouter = createBrowserRouter([
@@ -28,6 +29,11 @@ const appRouter = createBrowserRouter([
       {
         path:"/search/:params",
         element:<SearchPage/>
+
+      },
+      {
+        path:"/restaurant/:id",
+        element:<RestaurantDetails/>
 
       }
     ]
