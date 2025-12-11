@@ -2,6 +2,7 @@ import { Timer } from "lucide-react";
 
 import { Badge } from "./ui/badge";
 import AvailableMenu from "./AvailableMenu";
+import { Skeleton } from "./ui/skeleton";
 const RestaurantDetails = () => {
   return (
     <div className="max-w-6xl mx-auto my-10">
@@ -38,3 +39,61 @@ const RestaurantDetails = () => {
   );
 };
 export default RestaurantDetails;
+
+
+  export const Skeletonpage = () => {
+  return (
+    <div className="max-w-6xl mx-auto my-10">
+      {/* Banner Image Skeleton */}
+      <div className="relative w-full h-32 md:h-64 lg:h-72">
+        <Skeleton className="w-full h-full rounded-lg" />
+      </div>
+
+      <div className="flex flex-col md:flex-row justify-between">
+        <div className="my-5 space-y-4">
+          {/* Title */}
+          <Skeleton className="h-6 w-40" />
+
+          {/* Badges */}
+          <div className="flex gap-2">
+            <Skeleton className="h-6 w-16 rounded-full" />
+            <Skeleton className="h-6 w-16 rounded-full" />
+          </div>
+
+          {/* Delivery Time */}
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-5 w-5 rounded-full" />
+            <Skeleton className="h-5 w-40" />
+          </div>
+        </div>
+      </div>
+
+      {/* Menu Skeleton */}
+      <div className="md:p-4">
+        <Skeleton className="h-7 w-40 mb-6" />
+
+        <div className="grid md:grid-cols-3 space-y-4 md:space-y-0 gap-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="shadow-lg rounded-lg overflow-hidden p-4 border">
+              <Skeleton className="w-full h-40 rounded-md" />
+
+              <div className="space-y-3 mt-4">
+                <Skeleton className="h-5 w-32" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-24" />
+
+                <Skeleton className="h-6 w-28" />
+              </div>
+
+              <div className="mt-4">
+                <Skeleton className="h-10 w-full rounded-md" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+}
