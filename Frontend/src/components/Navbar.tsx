@@ -203,7 +203,7 @@ const MobileNavbar = () => {
           </Link>
 
           <Link
-            to="/profile"
+            to="/admin/restaurant"
             className="flex items-center gap-4 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900"
           >
             <UtensilsCrossed />
