@@ -12,10 +12,44 @@ import { useState } from "react";
 import { DialogTitle } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import EditMenu from "./EditMenu";
+const Menus = [{
+    title:"Biryani",
+    description:"Delicious biryani with tender meat and aromatic spices.",
+    price:230,
+    image:"https://plus.unsplash.com/premium_photo-1674106347866-8282d8c19f84?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
+},
+
+{
+    title:"Pizza",
+    description:"Delicious pizza with tender meat and aromatic spices.",
+    price:430,
+    image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+}]
 
 const AddMenu = () => {
+
   const loading = false;
   const [open, setopen] = useState<boolean>(false);
+  const [selectedMenu, setSelectedMenu] = useState<any>();
+  const [input,setInput] = useState<any>({
+    name:"",
+    description:"",
+    price:0,
+    image:undefined
+  })
+  const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const{name, value , type} = e.target;
+    setInput({
+      ...input,
+      [name]: type === "number" ? Number(value) : value,
+    });
+  };
+  const submitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(input);
+  }
   return (
     <div className="max-w-6xl mx-auto my-10 ">
       <div className="flex justify-between">
@@ -38,13 +72,15 @@ const AddMenu = () => {
                 customers.
               </DialogDescription>
             </DialogHeader>
-            <form className="space-y-5 mt-4">
+            <form onSubmit={submitHandler} className="space-y-5 mt-4">
               <div className="space-y-1">
                 <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
                   type="text"
                   name="name"
+                  value = {input.name}
+                  onChange={changeEventHandler}
                   placeholder="Enter a menu name"
                 />
               </div>
@@ -54,7 +90,10 @@ const AddMenu = () => {
                 <Input
                   id="description"
                   type="text"
+                  value={input.description}
+                  onChange={changeEventHandler}
                   name="description"
+                 
                   placeholder="Enter a menu description"
                 />
               </div>
@@ -65,6 +104,8 @@ const AddMenu = () => {
                   id="price"
                   type="text"
                   name="price"
+                  value={input.price}
+                    onChange={changeEventHandler}
                   placeholder="Enter a menu price"
                 />
               </div>
@@ -75,6 +116,7 @@ const AddMenu = () => {
                   id="image"
                   type="file"
                   name="image"
+                  onChange={(e)=>setInput({...input ,image: e.target.files?.[0]})}
                   className="cursor-pointer"
                 />
               </div>
@@ -98,29 +140,36 @@ const AddMenu = () => {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="mt-6 space-y-4 ">
+      {
+        Menus.map((menu: any , idx:number)=>(
+              <div className="mt-6 space-y-4 ">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-4 md:p-4 p-2 shadow-md rounded-lg border">
           <img
             className="md:h-24 md:w-24 h-18 w-full object-cover rounded-lg"
-            src="https://plus.unsplash.com/premium_photo-1674106347866-8282d8c19f84?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src={menu.image}
             alt="menu"
           />
           <div className="flex-1 ">
-            <h1 className="text-lg font-semi-bold text-gray-800">Biryani</h1>
+            <h1 className="text-lg font-semi-bold text-gray-800">{menu.title}</h1>
             <p className="text-gray-600 text-sm ">
-              Delicious biryani with tender meat and aromatic spices.
+              {menu.description}
             </p>
             <h2 className="mt-2 font-semibold text-gray-900">
-              Price : <span className="text-[#D19254]">Rs230</span>
+              Price : <span className="text-[#D19254]">Rs{menu.price}</span>
             </h2>
           </div>
-          <Button className="bg-button hover:bg-button-hover mt-2">
+          <Button onClick={() => setSelectedMenu(menu)} className="bg-button hover:bg-button-hover mt-2">
             {" "}
             Edit
           </Button>
         </div>
       </div>
-      
+
+        ))
+      }
+    
+      <EditMenu selectedMenu = {selectedMenu}/>
+
     </div>
   );
 };
